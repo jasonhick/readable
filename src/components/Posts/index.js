@@ -1,11 +1,11 @@
 import moment from 'moment';
-
 import FaThumbsDown from 'react-icons/lib/fa/thumbs-down';
 import FaThumbsUp from 'react-icons/lib/fa/thumbs-up';
 import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
 import FaComment from 'react-icons/lib/fa/comment';
 import FaCommentO from 'react-icons/lib/fa/comment-o';
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import * as readAPI from '../../utils/api';
 
@@ -25,25 +25,22 @@ class Posts extends Component {
 
       return (
         posts && posts.map(post => (
-          <article key={post.id} className="relative w-90 w-50-ns mb3 center avenir br3">
+          <article key={post.id} className="mb5 pb4 w-50-ns center bb b--black-10">
 
-            <div className="ph3 pv1 ba br3 br--top b--black-20 bg-white-50">
-              <span className="fl f7 moon-gray">Posted by {post.author}</span>
-              <span className="fr f7 moon-gray">{moment(post.timestamp).fromNow()}</span>
-              <h2 className="cb f4 tc">{post.title}</h2>
-              <hr className="mb3 mw5 center black-10" />
-              <p className="mb1 f6 tc black-70">
-                {post.body}
-              </p>
-            </div>
+            <h2>
+              <Link
+                to={`/post/${post.id}`}
+                className="pv3 ph1 bg-near-black link f4 white athelas hover-bg-gold bg-animate"
+              >{post.title}
+              </Link>
+            </h2>
+            <span className="f7 i">
+              Posted by {post.author} {moment(post.timestamp).fromNow()}
+            </span>
 
-            <div className="cf ph3 pv2 bl br bb br3 br--bottom b--black-20 bg-white-50">
-
-              <FaThumbsOUp className="fl" />
-              <FaThumbsODown className="fl" />
-              <FaComment className="fr" />
-              <FaCommentO className="fr o-20" />
-            </div>
+            <p className="avenir f5 avenir near-black measure">
+              {post.body}
+            </p>
 
           </article>
         ))

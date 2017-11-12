@@ -5,14 +5,13 @@ import Footer from './components/Footer';
 import Home from './views/Home';
 import Category from './views/Category';
 import Post from './views/Post';
-import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Header />
-        <main className="mt6">
+        <main>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/category/:id" component={Category} />
