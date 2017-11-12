@@ -1,0 +1,32 @@
+{
+  "name": "readable",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "eslint": "^4.11.0",
+    "moment": "^2.19.1",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-icons": "^2.2.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "author": "",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0"
+  }
+}
