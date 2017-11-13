@@ -1,10 +1,4 @@
 import moment from 'moment';
-import FaThumbsDown from 'react-icons/lib/fa/thumbs-down';
-import FaThumbsUp from 'react-icons/lib/fa/thumbs-up';
-import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
-import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
-import FaComment from 'react-icons/lib/fa/comment';
-import FaCommentO from 'react-icons/lib/fa/comment-o';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import * as readAPI from '../../utils/api';
