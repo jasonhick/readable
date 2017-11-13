@@ -1,4 +1,3 @@
-import * as readAPI from '../utils/api';
 import {
   GET_COMMENTS,
   ADD_COMMENT,

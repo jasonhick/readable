@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
-import Posts from '../../components/Posts';
+import React from 'react';
+import PostContainer from '../../components/posts/container';
 
-class Home extends Component {
-  render() {
-    return (
-      <Posts />
-    );
-  }
-}
+const Home = () => (
+  <PostContainer />
+);
 
 export default Home;
