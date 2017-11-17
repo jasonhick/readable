@@ -1,23 +1,32 @@
-import * as readAPI from '../utils/api';
-import {
-  GET_POSTS,
-  ADD_POST,
-} from '../actions';
+import { RECEIVE_POSTS, ADD_POST } from '../actions';
 
 function posts(state = [], action) {
   switch (action.type) {
-    case GET_POSTS:
-      return state;
-
     case ADD_POST:
-      return Object.assign({}, state, {
-        posts: [
-          ...state.posts,
-          {
-            post: action.post,
-          },
-        ],
-      });
+      return [
+        ...state,
+        { ...action.post },
+      ];
+
+    case RECEIVE_POSTS:
+      // return {
+      //   ...state,
+      //   ...action.payload.posts,
+      // };
+
+      const postsArray = action.payload.posts;
+      // Turn it into hashobjects for increased performance and easier handling
+      const posts = postsArray.reduce(
+        (map, obj) => {
+          map[obj.id] = obj;
+          return map;
+        },
+        {},
+      );
+      return {
+        ...state,
+        ...posts,
+      };
 
     default:
       return state;

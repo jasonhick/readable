@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import PostList from './list';
+import PostDetail from './detail';
 
-class PostsContainer extends Component {
+class PostContainer extends Component {
   componentDidMount() {
     // do stuff
   }
 
   render() {
-    const { posts } = this.props;
-    return React.createElement(PostList, { posts });
+    const { post } = this.props;
+    return React.createElement(PostDetail, { post });
   }
 }
 
@@ -25,4 +25,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(PostsContainer));
+export default connect(mapStateToProps)(withRouter(PostContainer));

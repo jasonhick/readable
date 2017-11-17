@@ -1390,6 +1390,10 @@ img {
     line-height: 1.5
 }
 
+.lh-2 {
+    line-height: 2
+}
+
 .link {
     text-decoration: none
 }

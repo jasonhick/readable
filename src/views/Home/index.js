@@ -1,8 +1,8 @@
 import React from 'react';
-import PostContainer from '../../components/posts/container';
+import PostsContainer from '../../components/posts/container';
 
-const Home = () => (
-  <PostContainer />
+const HomeView = () => (
+  <PostsContainer category="all" />
 );
 
-export default Home;
+export default HomeView;

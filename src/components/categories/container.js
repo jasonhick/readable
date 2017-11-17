@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as readAPI from '../../utils/api';
+import * as ReadableAPI from '../../utils/api';
 import CategoryList from './list';
 
 class CategoryContainer extends Component {
@@ -8,7 +8,7 @@ class CategoryContainer extends Component {
     }
 
     componentDidMount() {
-      readAPI.getCategories().then((categories) => {
+      ReadableAPI.getCategories().then((categories) => {
         this.setState({ categories });
       });
     }

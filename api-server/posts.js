@@ -1,13 +1,12 @@
 const clone = require('clone');
 
 const db = {};
-
 const defaultData = {
   '8xf0y6ziyjabvozdd253nd': {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ipsa soluta et laboriosam aut, magnam beatae dicta minus ut sit illum laudantium perspiciatis velit odio provident dolorum, recusandae, reprehenderit iusto.',
     author: 'thingtwo',
     category: 'react',
     voteScore: 6,
@@ -18,7 +17,7 @@ const defaultData = {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ipsa soluta et laboriosam aut, magnam beatae dicta minus ut sit illum laudantium perspiciatis velit odio provident dolorum, recusandae, reprehenderit iusto.',
     author: 'thingone',
     category: 'redux',
     voteScore: -5,
@@ -27,6 +26,39 @@ const defaultData = {
   },
   '6ni6ok3ym7mf1p33labc': {
     id: '6ni6ok3ym7mf1p33labc',
+    timestamp: 1510418085001,
+    title: 'Udacity rocks!',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ipsa soluta et laboriosam aut, magnam beatae dicta minus ut sit illum laudantium perspiciatis velit odio provident dolorum, recusandae, reprehenderit iusto.',
+    author: 'thingone',
+    category: 'udacity',
+    voteScore: 15,
+    deleted: false,
+    commentCount: 0,
+  },
+  cja29dy2l0000eysaxem4qp47: {
+    id: 'cja29dy2l0000eysaxem4qp47',
+    timestamp: 1510418085001,
+    title: 'Udacity rocks!',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ipsa soluta et laboriosam aut, magnam beatae dicta minus ut sit illum laudantium perspiciatis velit odio provident dolorum, recusandae, reprehenderit iusto.',
+    author: 'thingone',
+    category: 'udacity',
+    voteScore: 15,
+    deleted: false,
+    commentCount: 0,
+  },
+  cja29e16p0001eysa46to0m1u: {
+    id: 'cja29e16p0001eysa46to0m1u',
+    timestamp: 1510418085001,
+    title: 'Udacity rocks!',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ipsa soluta et laboriosam aut, magnam beatae dicta minus ut sit illum laudantium perspiciatis velit odio provident dolorum, recusandae, reprehenderit iusto.',
+    author: 'thingone',
+    category: 'udacity',
+    voteScore: 15,
+    deleted: false,
+    commentCount: 0,
+  },
+  cja29e1r50002eysa9r5fied6: {
+    id: 'cja29e1r50002eysa9r5fied6',
     timestamp: 1510418085001,
     title: 'Udacity rocks!',
     body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ipsa soluta et laboriosam aut, magnam beatae dicta minus ut sit illum laudantium perspiciatis velit odio provident dolorum, recusandae, reprehenderit iusto.',

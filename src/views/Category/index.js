@@ -1,24 +1,15 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import React from 'react';
+import PostsContainer from '../../components/posts/container';
 
-class Category extends Component {
+function CategoryView(props) {
+  const { category } = props.match.params || 'all';
 
-    render(){
-
-        const {params} = this.props.match;
-
-        return (
-            <div>
-                <h1>Category > {params.id}</h1>
-                [Posts component here]
-            </div>
-
-        );
-    }
+  return (
+    <div>
+      <h2 className="f1 mv0">{category}</h2>
+      <PostsContainer category={category} />
+    </div>
+  );
 }
 
-export default Category
+export default CategoryView;
