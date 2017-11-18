@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const CategoryList = ({ categories }) => (
 
   <div className="bg-near-black">
-    <nav className="mb3 mw9 ph0 pt0-ns ph6-l">
+    <nav className="mb3 mw8 ph0 pt0-ns ph6-l">
 
       <NavLink
         exact

@@ -14,13 +14,13 @@ class PostsContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  const filter = props.category;
+const mapStateToProps = (state, ownProps) => {
+  const filter = ownProps.category;
   return {
     posts: Object.keys(state.posts)
       .filter(post => (filter === 'all'
         ? state.posts[post] :
-        state.posts[post].category === props.category))
+        state.posts[post].category === filter))
       .map(post => state.posts[post]),
   };
 };

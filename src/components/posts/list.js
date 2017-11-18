@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const PostList = props => (
 
   <div className="flex flex-wrap">
-
     {props.posts && props.posts.map(post => (
       <article key={post.id} className="mb2 pb4 w5-l">
         <h2>

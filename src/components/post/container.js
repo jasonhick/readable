@@ -1,26 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PostDetail from './detail';
 
-class PostContainer extends Component {
-  componentDidMount() {
-    // do stuff
-  }
+const PostContainer = ({ posts }) => (
+  React.createElement(PostDetail, { posts })
+);
 
-  render() {
-    const { post } = this.props;
-    return React.createElement(PostDetail, { post });
-  }
-}
-
-const mapStateToProps = (state, props) => {
-  const filter = props.category;
+const mapStateToProps = (state, { match }) => {
+  const { postid } = match.params;
   return {
     posts: Object.keys(state.posts)
-      .filter(post => (filter === 'all'
-        ? state.posts[post] :
-        state.posts[post].category === props.category))
+      .filter(post => (state.posts[post].id === postid))
       .map(post => state.posts[post]),
   };
 };
