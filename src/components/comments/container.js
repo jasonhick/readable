@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import * as ReadableAPI from '../../utils/api';
-import Comment from '../comment/detail';
+import { connect } from 'react-redux';
+import {
+  getCommentsByPost,
+} from '../../actions/comments';
+import CommentDetail from '../comment/detail';
 
 class CommentsContainer extends Component {
-  state = {
-    comments: [],
-  }
-
   componentDidMount() {
     const { postid } = this.props.match.params;
-    ReadableAPI.fetchCommentsByParentId(postid)
-      .then(comments => this.setState({ comments }));
+    this.props.getCommentsByPost(postid);
   }
 
   render() {
-    const { comments } = this.state;
+    const { comments } = this.props;
 
     return (
 
@@ -23,7 +21,7 @@ class CommentsContainer extends Component {
         <h3 className="f3 bb b--black-20">Comments:</h3>
 
         {comments && comments.map(comment => (
-          <Comment comment={comment} />
+          <CommentDetail key={comment.id} comment={comment} />
         ))}
 
         <div className="relative h-auto mh9 mb3 ph4 pv2 br3 bg-white-30">
@@ -42,4 +40,13 @@ class CommentsContainer extends Component {
   }
 }
 
-export default withRouter(CommentsContainer);
+const mapStateToProps = state => ({
+  comments: Object.keys(state.comments)
+    .map(comment => state.comments[comment]),
+});
+
+const mapDispatchToProps = dispatch => ({
+  getCommentsByPost: post => dispatch(getCommentsByPost(post)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentsContainer));

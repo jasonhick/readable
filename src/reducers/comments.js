@@ -1,11 +1,25 @@
-import * as type from '../actions/types';
+import {
+  RECEIVE_COMMENTS,
+  VOTE_COMMENT,
+} from '../actions/types';
 
 function comments(state = [], action) {
   switch (action.type) {
-    case type.LOAD_COMMENTS:
+    case RECEIVE_COMMENTS: {
+      const newComments = action.comments
+        .reduce((newObj, comment) => ({
+          ...newObj,
+          [comment.id]: comment,
+        }), {});
+      return {
+        ...newComments,
+      };
+    }
+
+    case VOTE_COMMENT:
       return {
         ...state,
-        ...action.comments,
+        [action.comment.id]: action.comment,
       };
 
     default:

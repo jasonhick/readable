@@ -14,10 +14,7 @@ const PostDetail = ({ posts }) => (
       <CommentsContainer />
     </article>
 
-
   ))
-
-
 );
 
 export default PostDetail;

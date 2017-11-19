@@ -2,12 +2,12 @@ import * as type from '../actions/types';
 
 function posts(state = [], action) {
   switch (action.type) {
-    case type.RECEIVE_POSTS:
+    case type.RECEIVE_POSTS: {
       const postsArray = action.payload.posts;
       // Turn it into hashobjects for increased performance and easier handling
       const posts = postsArray.reduce(
-        (map, obj) => {
-          map[obj.id] = obj;
+        (map, post) => {
+          map[post.id] = post;
           return map;
         },
         {},
@@ -16,6 +16,7 @@ function posts(state = [], action) {
         ...state,
         ...posts,
       };
+    }
 
     default:
       return state;
