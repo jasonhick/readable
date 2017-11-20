@@ -7,7 +7,7 @@ const PostList = props => (
 
   <div className="flex flex-wrap">
     {props.posts && props.posts.map(post => (
-      <article key={post.id} className="mb2 pb4 w5-l">
+      <article key={post.id} className="w5 mr5 mb2 pb4">
         <h2>
           <Link
             to={`/${post.category}/${post.id}`}

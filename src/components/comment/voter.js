@@ -5,7 +5,7 @@ import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 import { apiVoteComment } from '../../actions/comments';
 
 const Voter = props => (
-  <div className="absolute top-1 right-1">
+  <div className="fr">
     <button
       type="button"
       className="pa2 br3 f4 ba b--black-20 mr1 hover-bg-gold bg-animate pointer grow"

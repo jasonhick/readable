@@ -1,7 +1,9 @@
 import {
   RECEIVE_COMMENTS,
-  VOTE_COMMENT,
   ADD_COMMENT,
+  EDIT_COMMENT,
+  DELETE_COMMENT,
+  VOTE_COMMENT,
 } from '../actions/types';
 
 function comments(state = [], action) {
@@ -18,11 +20,23 @@ function comments(state = [], action) {
     }
 
     case ADD_COMMENT:
+    case EDIT_COMMENT:
     case VOTE_COMMENT:
       return {
         ...state,
         [action.comment.id]: action.comment,
       };
+
+    case DELETE_COMMENT: {
+      const newState = state;
+      if (newState.hasOwnProperty(action.comment.id)) {
+        delete newState[action.comment.id];
+      }
+      return {
+        ...state,
+        ...newState,
+      };
+    }
 
     default:
       return state;

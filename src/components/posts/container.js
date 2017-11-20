@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getAllPosts } from '../../actions/posts';
 import PostList from './list';
 
 class PostsContainer extends Component {
   componentDidMount() {
-    // do stuff
+    this.props.getAllPosts();
   }
 
   render() {
@@ -25,4 +27,13 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(PostsContainer));
+const mapDispatchToProps = dispatch => ({
+  getAllPosts: () => dispatch(getAllPosts()),
+});
+
+PostsContainer.propTypes = {
+  posts: PropTypes.shape.isRequired,
+  getAllPosts: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostsContainer));

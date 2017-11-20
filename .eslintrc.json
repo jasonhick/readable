@@ -11,6 +11,7 @@
       "components": [ "Link" ],
       "specialLink": "to",
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
-      }]
+      }],
+    "no-prototype-builtins": "off"
     }
   }

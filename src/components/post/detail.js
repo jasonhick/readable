@@ -10,11 +10,12 @@ const PostDetail = ({ posts }) => (
       <span className="f4 i silver">
         Posted by {post.author}, {moment(post.timestamp).fromNow()}
       </span>
+
       <p className="avenir f5 avenir near-black measure">{post.body}</p>
       <CommentsContainer />
     </article>
-
   ))
+
 );
 
 export default PostDetail;

@@ -1,15 +1,22 @@
-import * as ReadableAPI from '../utils/api';
+import * as api from '../utils/api';
 import * as type from './types';
 
-export const receivePosts = posts => ({
+const receivePosts = posts => ({
   type: type.RECEIVE_POSTS,
-  payload: {
-    posts,
-  },
+  posts,
+});
+
+const getPost = post => ({
+  type: type.GET_POST,
+  post,
 });
 
 export const getAllPosts = () => dispatch => (
-  ReadableAPI
-    .fetchAllPosts()
+  api.fetchAllPosts()
     .then(data => dispatch(receivePosts(data)))
+);
+
+export const getPostById = id => dispatch => (
+  api.fetchPostById(id)
+    .then(data => dispatch(getPost(data)))
 );

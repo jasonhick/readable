@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PostsContainer from '../../components/posts/container';
 
 function CategoryView({ match }) {
@@ -12,5 +13,10 @@ function CategoryView({ match }) {
     </div>
   );
 }
+
+CategoryView.propTypes = {
+  match: PropTypes.string.isRequired,
+};
+
 
 export default CategoryView;

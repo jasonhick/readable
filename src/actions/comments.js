@@ -16,6 +16,11 @@ const addComment = comment => ({
   comment,
 });
 
+const deleteComment = comment => ({
+  type: type.DELETE_COMMENT,
+  comment,
+});
+
 export const getCommentsByPost = id => dispatch => (
   api.fetchCommentsByParentId(id)
     .then(data => dispatch(receiveComments(data)))
@@ -29,4 +34,9 @@ export const apiVoteComment = (id, option) => dispatch => (
 export const apiAddComment = comment => dispatch => (
   api.addComment(comment)
     .then(data => dispatch(addComment(data)))
+);
+
+export const apiDeleteComment = id => dispatch => (
+  api.deleteComment(id)
+    .then(data => dispatch(deleteComment(data)))
 );

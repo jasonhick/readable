@@ -28,6 +28,13 @@ export const fetchAllPosts = () =>
       console.log(error);
     });
 
+export const fetchPostById = id =>
+  axios.get(`${URL}/posts/${id}`, { headers })
+    .then(response => response.data)
+    .catch((error) => {
+      console.log(error);
+    });
+
 
 // -----------------------------------
 // COMMENT API
@@ -42,25 +49,14 @@ export const fetchCommentsByParentId = id =>
 export const voteOnComment = (id, option) =>
   axios.post(`${URL}/comments/${id}`, { option }, { headers })
     .then(response => response.data)
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => { console.log(error); });
 
-/*
-POST /comments
-      USAGE:
-        Add a comment to a post
-
-      PARAMS:
-        id: Any unique ID. As with posts, UUID is probably the best here.
-        timestamp: timestamp. Get this however you want.
-        body: String
-        author: String
-        parentId: Should match a post id in the database.
- */
 export const addComment = comment =>
   axios.post(`${URL}/comments`, comment, { headers })
     .then(response => response.data)
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => { console.log(error); });
+
+export const deleteComment = id =>
+  axios.delete(`${URL}/comments/${id}`, { headers })
+    .then(response => response.data)
+    .catch((error) => { console.log(error); });

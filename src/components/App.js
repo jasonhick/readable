@@ -8,7 +8,7 @@ import PostContainer from '../components/post/container';
 const App = () => (
   <div>
     <Header />
-    <main className="ph3 ph6-l mw8">
+    <main className="mw8 center">
       <Switch>
         <Route exact path="/:category?" component={CategoryView} />
         <Route exact path="/:category/:postid" component={PostContainer} />
