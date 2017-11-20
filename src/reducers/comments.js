@@ -1,6 +1,7 @@
 import {
   RECEIVE_COMMENTS,
   VOTE_COMMENT,
+  ADD_COMMENT,
 } from '../actions/types';
 
 function comments(state = [], action) {
@@ -16,6 +17,7 @@ function comments(state = [], action) {
       };
     }
 
+    case ADD_COMMENT:
     case VOTE_COMMENT:
       return {
         ...state,

@@ -1,4 +1,4 @@
-import * as ReadableAPI from '../utils/api';
+import * as api from '../utils/api';
 import * as type from './types';
 
 const receiveComments = comments => ({
@@ -11,14 +11,22 @@ const voteComment = comment => ({
   comment,
 });
 
+const addComment = comment => ({
+  type: type.ADD_COMMENT,
+  comment,
+});
+
 export const getCommentsByPost = id => dispatch => (
-  ReadableAPI
-    .fetchCommentsByParentId(id)
+  api.fetchCommentsByParentId(id)
     .then(data => dispatch(receiveComments(data)))
 );
 
 export const apiVoteComment = (id, option) => dispatch => (
-  ReadableAPI
-    .voteOnComment(id, option)
+  api.voteOnComment(id, option)
     .then(data => dispatch(voteComment(data)))
+);
+
+export const apiAddComment = comment => dispatch => (
+  api.addComment(comment)
+    .then(data => dispatch(addComment(data)))
 );

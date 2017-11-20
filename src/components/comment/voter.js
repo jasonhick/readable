@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
 import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
-import {
-  apiVoteComment,
-} from '../../actions/comments';
+import { apiVoteComment } from '../../actions/comments';
 
 const Voter = props => (
   <div className="absolute top-1 right-1">

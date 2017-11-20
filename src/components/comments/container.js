@@ -5,6 +5,7 @@ import {
   getCommentsByPost,
 } from '../../actions/comments';
 import CommentDetail from '../comment/detail';
+import CommentForm from '../comment/form';
 
 class CommentsContainer extends Component {
   componentDidMount() {
@@ -24,16 +25,8 @@ class CommentsContainer extends Component {
           <CommentDetail key={comment.id} comment={comment} />
         ))}
 
-        <div className="relative h-auto mh9 mb3 ph4 pv2 br3 bg-white-30">
-          <h4 className="f5 tn">Add a new comment</h4>
-          Author:
-          <br /><input type="text" className="h2 pl2 mb3 w-80 bg-white-30 bn b--light-gray" />
-          <br />Comment:
-          <br /><textarea type="text" className="h4 w-80 cb" />
-          <div className="absolute bottom-1 right-1">
-            <div className="mt2 mr1 pa2 br3 f5 ba b--black-20">Save</div>
-          </div>
-        </div>
+        <CommentForm />
+
       </div>
 
     );
