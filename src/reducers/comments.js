@@ -1,7 +1,7 @@
 import {
   RECEIVE_COMMENTS,
   ADD_COMMENT,
-  EDIT_COMMENT,
+  UPDATE_COMMENT,
   DELETE_COMMENT,
   VOTE_COMMENT,
 } from '../actions/types';
@@ -20,7 +20,7 @@ function comments(state = [], action) {
     }
 
     case ADD_COMMENT:
-    case EDIT_COMMENT:
+    case UPDATE_COMMENT:
     case VOTE_COMMENT:
       return {
         ...state,

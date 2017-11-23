@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import sortBy from 'sort-by';
 import { getCommentsByPost } from '../../actions/comments';
 import CommentDetail from '../comment/detail';
 import CommentForm from '../comment/form';
@@ -20,7 +21,7 @@ class CommentsContainer extends Component {
         {comments && comments.map(comment => (
           <CommentDetail key={comment.id} comment={comment} isEditing="false" />
         ))}
-        <CommentForm />
+        <CommentForm comment="" isEditing={false} />
       </div>
     );
   }
@@ -28,7 +29,8 @@ class CommentsContainer extends Component {
 
 const mapStateToProps = state => ({
   comments: Object.keys(state.comments)
-    .map(comment => state.comments[comment]),
+    .map(comment => state.comments[comment])
+    .sort(sortBy('-voteScore')),
 });
 
 const mapDispatchToProps = dispatch => ({

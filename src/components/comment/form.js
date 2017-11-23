@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import cuid from 'cuid';
-import { apiAddComment } from '../../actions/comments';
+import moment from 'moment';
+import {
+  apiAddComment,
+  apiUpdateComment,
+} from '../../actions/comments';
 
-class CommentForm extends React.Component {
+class CommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       parentId: props.match.params.postid,
+      id: props.comment.id || cuid(),
+      author: props.comment.author || '',
+      body: props.comment.body || '',
+      isEditing: props.isEditing || false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  clearForm() {
+    this.setState({
+      author: '',
+      body: '',
+    });
   }
 
   handleChange(event) {
@@ -24,29 +39,25 @@ class CommentForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const comment = {
-      id: cuid(),
       timestamp: Date.now(),
       ...this.state,
     };
-    this.props.addComment(comment);
+
+    if (this.state.isEditing) {
+      this.props.updateComment(comment);
+      this.props.toggleEdit();
+    } else {
+      this.props.addComment(comment);
+      this.clearForm();
+    }
   }
 
   render() {
+    const { isEditing } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
+        <div className="relative cf mb3 pa4 br3 bg-white-30">
 
-        <div className="relative h-auto mh9 mb3 ph4 pv2 br3 bg-white-30">
-          <h4 className="f5 tn">Add a new comment</h4>
-
-          <label htmlFor="author" className="db">Author:
-            <input
-              id="author"
-              name="author"
-              type="text"
-              className="db h2 pl2 mb3 w-80 bg-white-30 bn b--light-gray"
-              onChange={this.handleChange}
-            />
-          </label>
 
           <label htmlFor="body" className="db">Comment:
             <textarea
@@ -54,25 +65,40 @@ class CommentForm extends React.Component {
               name="body"
               className="db h4 w-80"
               onChange={this.handleChange}
+              value={this.state.body}
             />
           </label>
+
+          {isEditing ? (
+            <p className="silver i">Posted by {this.state.author}, {moment(this.state.timestamp).fromNow()}</p>
+            ) : (
+              <label htmlFor="author" className="db">Author:
+                <input
+                  id="author"
+                  name="author"
+                  type="text"
+                  className="db h2 pl2 mb3 w-80 bg-white-30 bn b--light-gray"
+                  onChange={this.handleChange}
+                  value={this.state.author}
+                />
+              </label>
+            )}
 
           <div className="absolute bottom-1 right-1">
             <button type="submit" className="mt2 mr1 pa2 br3 f5 ba b--black-20">Save</button>
           </div>
-        </div>
 
+        </div>
       </form>
     );
   }
 }
 
-const mapStateToProps = () => (
-  {}
-);
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   addComment: comment => dispatch(apiAddComment(comment)),
+  updateComment: comment => dispatch(apiUpdateComment(comment)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentForm));

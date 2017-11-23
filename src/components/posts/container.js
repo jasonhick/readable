@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import sortBy from 'sort-by';
 import { getAllPosts } from '../../actions/posts';
 import PostList from './list';
 
@@ -23,7 +24,8 @@ const mapStateToProps = (state, ownProps) => {
       .filter(post => (filter === 'all'
         ? state.posts[post] :
         state.posts[post].category === filter))
-      .map(post => state.posts[post]),
+      .map(post => state.posts[post])
+      .sort(sortBy('-voteScore')),
   };
 };
 
