@@ -16,13 +16,13 @@ class CommentsContainer extends Component {
     const { comments } = this.props;
 
     return (
-      <div className="avenir mw6">
-        <h3 className="f3 bb b--black-20">Comments:</h3>
+      <div>
         {comments && comments.map(comment => (
           <CommentDetail key={comment.id} comment={comment} isEditing="false" />
         ))}
         <CommentForm comment="" isEditing={false} />
       </div>
+
     );
   }
 }

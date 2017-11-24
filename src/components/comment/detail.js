@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { apiDeleteComment } from '../../actions/comments';
-import Voter from './voter';
+import Voter from '../voter';
+import Menu from '../menu';
 import CommentForm from '../comment/form';
-import Menu from '../comment/menu';
 
 class Comment extends Component {
   constructor(props) {
@@ -33,22 +33,16 @@ class Comment extends Component {
 
     return (
 
-      <div className="relative cf mb3 pa4 br3 bg-white-30">
-
+      <div className="relative cf mb3 pt4 ph4 pb3 bg-animate hover-bg-white-60 br3 bg-white-30">
         <Menu
           toggleEdit={this.toggleEdit}
           deleteComment={() => deleteComment(comment.id)}
         />
-
-        <p className="mt0">{comment.body}</p>
-
-        <p className="silver i">Posted by {comment.author}, {moment(comment.timestamp).fromNow()}</p>
-
+        <p className="mt0 avenir">{comment.body}</p>
+        <p className="athelas silver i">Posted by {comment.author}, {moment(comment.timestamp).fromNow()}</p>
         <div className="cb mt4 pt3 bt b--black-10">
-          <Voter commentId={comment.id} />
-          <div className="fl mt2 mr1 pa2 br3 f5 ba b--black-20">Votes: {comment.voteScore}</div>
+          <Voter type="comment" id={comment.id} score={comment.voteScore} />
         </div>
-
       </div>
 
     );

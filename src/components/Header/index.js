@@ -6,7 +6,7 @@ const Header = () => (
 
   <header className="bg-gold athelas">
 
-    <div className="mw8 pv4 center">
+    <div className="mw8 pv4 ph3 ph0-l center">
       <time className="f6 mb2 dib ttu tracked">
         <small>{moment().format('dddd, Do of MMMM , YYYY')}</small>
       </time>

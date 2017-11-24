@@ -1,15 +1,15 @@
 import * as api from '../utils/api';
-import * as type from './types';
+import makeActionCreator from '../utils/makeActionCreator';
+import * as actionType from './types';
 
-const receivePosts = posts => ({
-  type: type.RECEIVE_POSTS,
-  posts,
-});
-
-const getPost = post => ({
-  type: type.GET_POST,
-  post,
-});
+//----------------------------------------------
+// POST ACTIONS
+//----------------------------------------------
+const receivePosts = makeActionCreator(actionType.RECEIVE_POSTS, 'posts');
+const getPost = makeActionCreator(actionType.GET_POST, 'post');
+const addPost = makeActionCreator(actionType.ADD_POST, 'post');
+const updatePost = makeActionCreator(actionType.UPDATE_POST, 'post');
+const deletePost = makeActionCreator(actionType.DELETE_POST, 'post');
 
 export const getAllPosts = () => dispatch => (
   api.fetchAllPosts()
@@ -19,4 +19,14 @@ export const getAllPosts = () => dispatch => (
 export const getPostById = id => dispatch => (
   api.fetchPostById(id)
     .then(data => dispatch(getPost(data)))
+);
+
+export const apiAddPost = post => dispatch => (
+  api.addPost(post)
+    .then(data => dispatch(addPost(data)))
+);
+
+export const apiUpdatePost = post => dispatch => (
+  api.updatePost(post)
+    .then(data => dispatch(updatePost(data)))
 );

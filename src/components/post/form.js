@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import cuid from 'cuid';
 import moment from 'moment';
-import {
-  apiAddComment,
-  apiUpdateComment,
-} from '../../actions/comments';
 
-class CommentForm extends Component {
+class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parentId: props.match.params.postid,
-      id: props.comment.id || cuid(),
-      author: props.comment.author || '',
-      body: props.comment.body || '',
+      id: props.post.id || cuid(),
+      author: props.post.author || '',
+      body: props.post.body || '',
+      category: props.post.category || '',
       isEditing: props.isEditing || false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -24,8 +19,10 @@ class CommentForm extends Component {
 
   clearForm() {
     this.setState({
+      id: '',
       author: '',
       body: '',
+      category: '',
     });
   }
 
@@ -38,16 +35,16 @@ class CommentForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const comment = {
+    const post = {
       timestamp: Date.now(),
       ...this.state,
     };
 
     if (this.state.isEditing) {
-      this.props.updateComment(comment);
+      this.props.updatePost(post);
       this.props.toggleEdit();
     } else {
-      this.props.addComment(comment);
+      this.props.addPost(post);
       this.clearForm();
     }
   }
@@ -57,15 +54,6 @@ class CommentForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="relative cf mb3 pa4 br3 bg-white-30">
-
-          <textarea
-            id="body"
-            name="body"
-            className="w-100 h4 mb3 pa3 bg-white-90 bn"
-            onChange={this.handleChange}
-            value={this.state.body}
-            placeholder="Type your comment here"
-          />
 
           {isEditing ? (
             <p className="silver i">Posted by {this.state.author}, {moment(this.state.timestamp).fromNow()}</p>
@@ -82,7 +70,30 @@ class CommentForm extends Component {
               </p>
             )}
 
-          <button type="submit" className="mt2 mr1 pa2 br3 f5 ba b--black-20">Save</button>
+          <textarea
+            id="body"
+            name="body"
+            className="w-100 h5 mb3 pa3 bg-white-90 bn"
+            onChange={this.handleChange}
+            value={this.state.body}
+            placeholder="Type your comment here"
+          />
+
+          <label htmlFor="react" className="container avenir">React
+            <input id="react" type="radio" name="category" value="react" onChange={this.handleChange} />
+            <span className="checkmark" />
+          </label>
+          <label htmlFor="redux" className="container avenir">Redux
+            <input id="redux" type="radio" name="category" value="redux" onChange={this.handleChange} />
+            <span className="checkmark" />
+          </label>
+          <label htmlFor="udacity" className="container avenir">Udacity
+            <input id="udacity" type="radio" name="category" value="udacity" onChange={this.handleChange} />
+            <span className="checkmark" />
+          </label>
+
+          <hr className="cb w-100 mt5 mb3 bt-0 b--black-10" />
+          <button type="submit" className="fr pa2 br3 f5 ba b--black-20">Save post</button>
 
         </div>
       </form>
@@ -90,11 +101,4 @@ class CommentForm extends Component {
   }
 }
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = dispatch => ({
-  addComment: comment => dispatch(apiAddComment(comment)),
-  updateComment: comment => dispatch(apiUpdateComment(comment)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentForm));
+export default connect()(PostForm);

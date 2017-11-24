@@ -7,10 +7,7 @@ function CategoryView({ match }) {
   const filter = category || 'all';
 
   return (
-    <div>
-      <h2 className="f1 mv0">{filter}</h2>
-      <PostsContainer category={filter} />
-    </div>
+    <PostsContainer category={filter} />
   );
 }
 

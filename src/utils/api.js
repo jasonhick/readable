@@ -38,6 +38,26 @@ export const fetchPostById = id =>
     });
 
 
+export const voteOnPost = (id, option) =>
+  axios.post(`${URL}/posts/${id}`, { option }, { headers })
+    .then(response => response.data)
+    .catch((error) => { console.log(error); });
+
+
+// POST: Add a new comment to a post
+export const addPost = post =>
+  axios.post(`${URL}/posts`, post, { headers })
+    .then(response => response.data)
+    .catch((error) => { console.log(error); });
+
+
+// PUT: Update a post
+export const updatePost = post =>
+  axios.put(`${URL}/posts/${post.id}`, post, { headers })
+    .then(response => response.data)
+    .catch((error) => { console.log(error); });
+
+
 // -----------------------------------
 // COMMENT API
 // -----------------------------------
@@ -54,15 +74,6 @@ const apiComment = axios.create({
   responseType: 'json',
 });
 
-const ENDPOINT_ADD_COMMENT = '/comments';
-
-// POST: Add a new comment to a post
-// export const addComment = (method, body) =>
-//   apiComment('post', ENDPOINT_ADD_COMMENT, body)
-//     .then(response => response.data)
-//     .catch((error) => { console.log(error); });
-//
-
 export const fetchCommentsByParentId = id =>
   axios.get(`${URL}/posts/${id}/comments`, { headers })
     .then(response => response.data)
@@ -76,17 +87,20 @@ export const voteOnComment = (id, option) =>
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
+
 // POST: Add a new comment to a post
 export const addComment = comment =>
   axios.post(`${URL}/comments`, comment, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
+
 // PUT: Update a comment
 export const updateComment = comment =>
   axios.put(`${URL}/comments/${comment.id}`, comment, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
+
 
 // DELETE: Delete a comment
 export const deleteComment = id =>
