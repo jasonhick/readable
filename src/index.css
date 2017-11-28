@@ -7911,7 +7911,7 @@ img {
     }
 }
 
-.title {
+.hover-title {
   -webkit-box-decoration-break: clone;
   -ms-box-decoration-break: clone;
   -o-box-decoration-break: clone;
@@ -7920,9 +7920,19 @@ img {
   transition: all .15s ease-in-out
 }
 
-.title:hover {
+.hover-title:hover {
   background-color: #ffb700;
   box-shadow: 2rem 0 0 #ffb700, -0.5rem 0 0 #000;
+  transition: all .15s ease-in-out
+}
+
+.title {
+  line-height: 70px;
+  -webkit-box-decoration-break: clone;
+  -ms-box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  box-decoration-break: clone;
+  box-shadow: 0.25rem 0 0 #000, -1rem 0 0 #ffb700;
   transition: all .15s ease-in-out
 }
 
@@ -7953,7 +7963,7 @@ img {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #ccc;
+    background-color: #fff;
     border-radius: 50%;
 }
 
@@ -7988,3 +7998,59 @@ img {
 	border-radius: 50%;
 	background: white;
 }
+
+.lhn {
+  line-height: normal;
+}
+
+    #loading{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    	background-color: rgba(0,0,0, 0.8);
+    	z-index: 1;
+    }
+    #loading-center{
+    	width: 100%;
+    	height: 100%;
+    	position: relative;
+    }
+    #loading-center-absolute {
+    	position: absolute;
+    	left: 50%;
+    	top: 50%;
+    	height: 200px;
+    	width: 200px;
+    	margin-top: -100px;
+    	margin-left: -100px;
+    }
+    #object{
+    	width: 80px;
+    	height: 80px;
+    	background-color: #eee;
+    	-webkit-animation: animate 1s infinite ease-in-out;
+    	animation: animate 1s infinite ease-in-out;
+    	margin-right: auto;
+    	margin-left: auto;
+    	margin-top: 60px;
+    }
+    @-webkit-keyframes animate {
+      0% { -webkit-transform: perspective(160px); }
+      50% { -webkit-transform: perspective(160px) rotateY(-180deg); }
+      100% { -webkit-transform: perspective(160px) rotateY(-180deg) rotateX(-180deg); }
+    }
+
+    @keyframes animate {
+      0% {
+        transform: perspective(160px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(160px) rotateX(0deg) rotateY(0deg);
+      } 50% {
+        transform: perspective(160px) rotateX(-180deg) rotateY(0deg);
+        -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(0deg) ;
+      } 100% {
+        transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+        -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+      }
+    }

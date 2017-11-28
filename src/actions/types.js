@@ -5,6 +5,8 @@ export const ADD_POST = 'ADD_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const VOTE_POST = 'VOTE_POST';
+export const SORT_POSTS = 'SORT_POSTS';
+
 
 // COMMENT ACTION TYPES
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';

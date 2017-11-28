@@ -11,6 +11,13 @@ const addPost = makeActionCreator(actionType.ADD_POST, 'post');
 const updatePost = makeActionCreator(actionType.UPDATE_POST, 'post');
 const deletePost = makeActionCreator(actionType.DELETE_POST, 'post');
 
+export function sortPosts(field) {
+  return {
+    type: actionType.SORT_POSTS,
+    field,
+  };
+}
+
 export const getAllPosts = () => dispatch => (
   api.fetchAllPosts()
     .then(data => dispatch(receivePosts(data)))

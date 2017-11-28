@@ -1,15 +1,18 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Header from './header';
-import Footer from './footer';
 import CategoryView from '../views/category';
+import Header from '../components/header';
+import Footer from '../components/footer';
 import PostContainer from '../components/post/container';
 import PostForm from '../components/post/form';
 
+const defaultFormProps = {
+  isEditing: false,
+};
+
 const FormWithProps = () => (
   <PostForm
-    post=""
-    isEditing={false}
+    post={defaultFormProps}
   />
 );
 

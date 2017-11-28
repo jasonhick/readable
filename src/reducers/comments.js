@@ -1,14 +1,8 @@
-import {
-  RECEIVE_COMMENTS,
-  ADD_COMMENT,
-  UPDATE_COMMENT,
-  DELETE_COMMENT,
-  VOTE_COMMENT,
-} from '../actions/types';
+import * as actionType from '../actions/types';
 
 function comments(state = [], action) {
   switch (action.type) {
-    case RECEIVE_COMMENTS: {
+    case actionType.RECEIVE_COMMENTS: {
       const newComments = action.comments
         .reduce((newObj, comment) => ({
           ...newObj,
@@ -19,15 +13,15 @@ function comments(state = [], action) {
       };
     }
 
-    case ADD_COMMENT:
-    case UPDATE_COMMENT:
-    case VOTE_COMMENT:
+    case actionType.ADD_COMMENT:
+    case actionType.UPDATE_COMMENT:
+    case actionType.VOTE_COMMENT:
       return {
         ...state,
         [action.comment.id]: action.comment,
       };
 
-    case DELETE_COMMENT: {
+    case actionType.DELETE_COMMENT: {
       const newState = state;
       if (newState.hasOwnProperty(action.comment.id)) {
         delete newState[action.comment.id];

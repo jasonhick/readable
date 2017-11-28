@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import CategoryContainer from '../categories/container';
 
 const Header = () => (
@@ -11,7 +12,7 @@ const Header = () => (
         <small>{moment().format('dddd, Do of MMMM , YYYY')}</small>
       </time>
       <h3 className="mv2 mv0-ns f2 f1-m f-headline-l measure-narrow lh-title">
-        <span className="bg-black-90 lh-copy white pa2 tracked-tight">Readable</span>
+        <Link to="/" className="bg-black-90 lh-copy white pa2 no-underline tracked-tight hover-bg-gold">Readable</Link>
       </h3>
       <h4 className="mv0 f4 f3-ns fw1 athelas i">A React Nanodegree project using Redux</h4>
     </div>

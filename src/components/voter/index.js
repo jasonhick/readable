@@ -22,7 +22,7 @@ const Voter = props => (
     ><FaThumbsODown />
     </button>
 
-    <span className="pa2 br3 f5 ba b--black-20">{props.score}</span>
+    <span className="pa2 br3 f4 ba b--black-20">{props.score}</span>
 
   </div>
 

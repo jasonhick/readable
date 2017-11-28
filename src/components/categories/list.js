@@ -1,18 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import FaHome from 'react-icons/lib/fa/home';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 const CategoryList = ({ categories }) => (
 
   <div className="bg-near-black">
-    <nav className="mw8 center pv0">
+
+    <nav className="mw8 h3 center pv0">
 
       <NavLink
         exact
         category="home"
         activeClassName="bg-gold black"
-        className="pa3 f5 f4-ns ttc link white dib hover-bg-gold bg-animate"
+        className="fl dn min-h-100 inline-flex-ns items-center pa3 no-underline f3 ttc tc white hover-bg-gold bg-animate"
         to="/"
-      >Home
+      >
+        <FaHome />
       </NavLink>
 
       {categories && categories.map(({ name, path }) => (
@@ -20,20 +24,24 @@ const CategoryList = ({ categories }) => (
           key={path}
           category={path}
           activeClassName="bg-gold"
-          className="pa3 f5 f4-ns ttc link link white dib hover-bg-gold bg-animate"
+          className="min-h-100 inline-flex items-center pa3 no-underline f4 ttc tc white hover-bg-gold bg-animate"
           to={`/${path}`}
         >{name}
         </NavLink>
         ))}
 
       <NavLink
-        activeClassName="bg-gold black"
-        className="fr pa3 f5 f4-ns ttc link white dib hover-bg-gold bg-animate"
+        activeClassName="bg-gold"
+        className="fr min-h-100 inline-flex items-center pa3 no-underline f4 ttc tc white hover-bg-gold bg-animate"
         to="/post/add"
-      >Add New Post
+      >
+        <FaPlusCircle className="dn-ns f3" />
+        <span className="dn dib-ns">Add New Post</span>
       </NavLink>
 
+
     </nav>
+
   </div>
 
 );
