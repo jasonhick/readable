@@ -37,3 +37,8 @@ export const apiUpdatePost = post => dispatch => (
   api.updatePost(post)
     .then(data => dispatch(updatePost(data)))
 );
+
+export const apiDeletePost = post => dispatch => (
+  api.deletePost(post)
+    .then(data => dispatch(deletePost(data)))
+);

@@ -1,28 +1,72 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
+import { apiDeletePost } from '../../actions/posts';
+import PropTypes from 'prop-types';
 import Voter from '../voter';
+import Menu from '../menu';
+import PostForm from './form';
 import CommentsContainer from '../comments/container';
 
-const PostDetail = ({ posts }) => (
+class PostDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isEditing: false };
+    this.toggleEdit = this.toggleEdit.bind(this);
+  }
 
-  posts && posts.map(post => (
-    <article key={post.id} className="mw6 mb2 pb4">
-      <h2><span className="title pv2 ph1 bg-near-black f1 lh-2 white athelas">{post.title}</span></h2>
-      <span className="f4 i silver">
-        Posted by {post.author}, {moment(post.timestamp).fromNow()}
-      </span>
+  toggleEdit() {
+    this.setState({ isEditing: !this.state.isEditing });
+  }
 
-      <p className="avenir f5 avenir lh-copy near-black measure">{post.body}</p>
+  render() {
+    const { isEditing } = this.state;
+    const { posts, deletePost } = this.props;
 
-      <Voter type="post" id={post.id} score={post.voteScore} />
+    // if (isEditing) {
+    //   return (
+    //     <PostForm
+    //       post={post}
+    //       isEditing
+    //       toggleEdit={this.toggleEdit}
+    //     />
+    //   );
+    // }
 
-      <h2 className="cb mt6 pt3 bt b--black-10 f2 i athelas silver">Comments:</h2>
+    return (
+      posts && posts.map(post => (
+        <article key={post.id} className="relative mw6 mb2 pb4">
 
-      <CommentsContainer />
+          <h2><span className="title pv2 ph1 bg-near-black f1 lh-2 white athelas">{post.title}</span></h2>
+          <span className="f4 i silver">
+            Posted by {post.author}, {moment(post.timestamp).fromNow()}
+          </span>
 
-    </article>
-  ))
+          <Menu
+            cssClass="fr relative h1 w2 tr pointer hide-child"
+            handleToggleEdit={this.toggleEdit}
+            handleOnDelete={() => deletePost(post.id)}
+          />
 
-);
+          <p className="avenir f5 avenir lh-copy near-black measure">{post.body}</p>
 
-export default PostDetail;
+          <Voter type="post" id={post.id} score={post.voteScore} />
+
+          <h2 className="cb mt6 pt3 bt b--black-10 f2 i athelas silver">Comments:</h2>
+
+          <CommentsContainer />
+
+        </article>
+      ))
+    ); // end return
+  } // end render
+} // end class
+
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  deletePost: id => dispatch(apiDeletePost(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

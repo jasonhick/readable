@@ -11,9 +11,10 @@ import {
 class CommentForm extends Component {
   constructor(props) {
     super(props);
+    const id = cuid();
     this.state = {
       parentId: props.match.params.postid,
-      id: props.comment.id || cuid(),
+      id: props.comment.id || id,
       author: props.comment.author || '',
       body: props.comment.body || '',
       isEditing: props.isEditing || false,
@@ -38,6 +39,7 @@ class CommentForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     const comment = {
       timestamp: Date.now(),
       ...this.state,
@@ -49,6 +51,10 @@ class CommentForm extends Component {
     } else {
       this.props.addComment(comment);
       this.clearForm();
+
+      // Reset the ID in state ready for the next comment
+      const id = cuid();
+      this.setState({ id });
     }
   }
 

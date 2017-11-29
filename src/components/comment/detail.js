@@ -35,8 +35,9 @@ class Comment extends Component {
 
       <div className="relative cf mb3 pt4 ph4 pb3 bg-animate hover-bg-white-60 br3 bg-white-30">
         <Menu
-          toggleEdit={this.toggleEdit}
-          deleteComment={() => deleteComment(comment.id)}
+          cssClass="absolute top-1 right-1 h1 w2 tr pointer hide-child"
+          handleToggleEdit={this.toggleEdit}
+          handleOnDelete={() => deleteComment(comment.id)}
         />
         <p className="mt0 avenir">{comment.body}</p>
         <p className="athelas silver i">Posted by {comment.author}, {moment(comment.timestamp).fromNow()}</p>

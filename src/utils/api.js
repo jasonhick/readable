@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-console.log('NODE', process.env.NODE_ENV);
-
-const API_URL = 'https://reddit-clone-server-kdgzczvlpv.now.sh';
-// const API_URL = process.env.NODE_ENV === 'development'
-//   ? process.env.REACT_APP_API_DEV_URL
-//   : process.env.REACT_APP_API_PROD_URL;
+// const API_URL = 'https://reddit-clone-server-kdgzczvlpv.now.sh';
+const API_URL = process.env.NODE_ENV === 'development'
+  ? process.env.REACT_APP_API_DEV_URL
+  : process.env.REACT_APP_API_PROD_URL;
 
 let { AUTH_TOKEN } = localStorage;
 if (!AUTH_TOKEN) {
@@ -34,25 +32,33 @@ export const fetchAllPosts = () =>
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
+
 export const fetchPostById = id =>
   axios.get(`${API_URL}/posts/${id}`, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
+
 
 export const voteOnPost = (id, option) =>
   axios.post(`${API_URL}/posts/${id}`, { option }, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
-// POST: Add a new comment to a post
+
 export const addPost = post =>
   axios.post(`${API_URL}/posts`, post, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
-// PUT: Update a post
+
 export const updatePost = post =>
   axios.put(`${API_URL}/posts/${post.id}`, post, { headers })
+    .then(response => response.data)
+    .catch((error) => { console.log(error); });
+
+
+export const deletePost = id =>
+  axios.delete(`${API_URL}/posts/${id}`, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
@@ -67,28 +73,25 @@ export const fetchCommentsByParentId = id =>
       console.log(error);
     });
 
-// POST: Vote on a comment
+
 export const voteOnComment = (id, option) =>
   axios.post(`${API_URL}/comments/${id}`, { option }, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
 
-// POST: Add a new comment to a post
 export const addComment = comment =>
   axios.post(`${API_URL}/comments`, comment, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
 
-// PUT: Update a comment
 export const updateComment = comment =>
   axios.put(`${API_URL}/comments/${comment.id}`, comment, { headers })
     .then(response => response.data)
     .catch((error) => { console.log(error); });
 
 
-// DELETE: Delete a comment
 export const deleteComment = id =>
   axios.delete(`${API_URL}/comments/${id}`, { headers })
     .then(response => response.data)
