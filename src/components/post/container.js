@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { getPostById } from '../../actions/posts';
 import PostDetail from './detail';
 import Loading from '../loading';
@@ -21,14 +20,16 @@ class PostContainer extends Component {
   }
 
   renderLoading() {
-    return (
-      <Loading />
-    );
+    return React.createElement(Loading);
   }
 
   renderView() {
     const { posts } = this.props;
-    return React.createElement(PostDetail, { posts });
+    return (
+      posts && posts.map(post => (
+        <PostDetail key={post.id} post={post} isEditing="false" />
+      ))
+    );
   }
 
   render() {
@@ -47,11 +48,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getPostById: id => dispatch(getPostById(id)),
 });
-
-PostContainer.propTypes = {
-  match: PropTypes.string.isRequired,
-  posts: PropTypes.shape.isRequired,
-  getPostById: PropTypes.func.isRequired,
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostContainer));

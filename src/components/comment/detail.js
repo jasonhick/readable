@@ -4,7 +4,7 @@ import moment from 'moment';
 import { apiDeleteComment } from '../../actions/comments';
 import Voter from '../voter';
 import Menu from '../menu';
-import CommentForm from '../comment/form';
+import CommentForm from './form';
 
 class Comment extends Component {
   constructor(props) {

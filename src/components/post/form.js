@@ -8,15 +8,14 @@ import { apiAddPost, apiUpdatePost } from '../../actions/posts';
 class PostForm extends Component {
   constructor(props) {
     super(props);
+    const id = cuid();
     this.state = {
-      post: {
-        id: this.props.post.id || cuid(),
-        timestamp: this.props.post.timestamp || Date.now(),
-        author: this.props.post.author || '',
-        title: this.props.post.title || '',
-        body: this.props.post.body || '',
-        category: this.props.post.category || '',
-      },
+      id: props.post.id || id,
+      timestamp: props.post.timestamp || Date.now(),
+      author: props.post.author || '',
+      title: props.post.title || '',
+      body: props.post.body || '',
+      category: props.post.category || '',
       isEditing: props.isEditing || false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -24,25 +23,28 @@ class PostForm extends Component {
   }
 
   clearForm() {
+    const id = cuid();
     this.setState({
-      post: {},
+      id,
+      timestamp: Date.now(),
+      author: '',
+      title: '',
+      body: '',
+      category: '',
     });
   }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({
-      post: {
-        ...this.state.post,
-        [name]: value,
-      },
+      [name]: value,
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const post = {
-      ...this.state.post,
+      ...this.state,
     };
 
     if (this.state.isEditing) {
@@ -105,7 +107,7 @@ class PostForm extends Component {
               onChange={this.handleChange}
               value={this.state.body}
               placeholder="Type your post here"
-              maxLength="1000"
+              maxLength="5000"
               required
             />
           </label>
@@ -119,6 +121,7 @@ class PostForm extends Component {
               type="radio"
               name="category"
               value="react"
+              checked={this.state.category === 'react'}
               required
               onChange={this.handleChange}
             />
@@ -133,6 +136,7 @@ class PostForm extends Component {
               type="radio"
               name="category"
               value="redux"
+              checked={this.state.category === 'redux'}
               required
               onChange={this.handleChange}
             />
@@ -147,6 +151,7 @@ class PostForm extends Component {
               type="radio"
               name="category"
               value="udacity"
+              checked={this.state.category === 'udacity'}
               required
               onChange={this.handleChange}
             />
@@ -163,14 +168,12 @@ class PostForm extends Component {
 }
 
 PostForm.propTypes = {
-  post: PropTypes.shape({
-    id: PropTypes.string,
-    timestamp: PropTypes.string,
-    author: PropTypes.string,
-    title: PropTypes.string,
-    body: PropTypes.string,
-    category: PropTypes.string,
-  }).isRequired,
+  id: PropTypes.string.isRequired,
+  timestamp: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   isEditing: PropTypes.bool.isRequired,
 };
 

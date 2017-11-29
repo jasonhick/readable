@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import cuid from 'cuid';
 import moment from 'moment';
-import {
-  apiAddComment,
-  apiUpdateComment,
-} from '../../actions/comments';
+import { apiAddComment, apiUpdateComment } from '../../actions/comments';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -24,7 +21,10 @@ class CommentForm extends Component {
   }
 
   clearForm() {
+    const id = cuid();
     this.setState({
+      id,
+      timestamp: Date.now(),
       author: '',
       body: '',
     });
@@ -39,9 +39,7 @@ class CommentForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
     const comment = {
-      timestamp: Date.now(),
       ...this.state,
     };
 
@@ -51,10 +49,6 @@ class CommentForm extends Component {
     } else {
       this.props.addComment(comment);
       this.clearForm();
-
-      // Reset the ID in state ready for the next comment
-      const id = cuid();
-      this.setState({ id });
     }
   }
 
