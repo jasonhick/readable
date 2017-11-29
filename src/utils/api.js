@@ -69,9 +69,7 @@ export const deletePost = id =>
 export const fetchCommentsByParentId = id =>
   axios.get(`${API_URL}/posts/${id}/comments`, { headers })
     .then(response => response.data)
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => { console.log(error); });
 
 
 export const voteOnComment = (id, option) =>

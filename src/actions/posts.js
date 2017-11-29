@@ -25,7 +25,13 @@ export const getAllPosts = () => dispatch => (
 
 export const getPostById = id => dispatch => (
   api.fetchPostById(id)
-    .then(data => dispatch(getPost(data)))
+    .then((data) => {
+      if (Object.keys(data).length === 0) {
+        window.location.href = '/404';
+      } else {
+        dispatch(getPost(data));
+      }
+    })
 );
 
 export const apiAddPost = post => dispatch => (
@@ -40,5 +46,8 @@ export const apiUpdatePost = post => dispatch => (
 
 export const apiDeletePost = post => dispatch => (
   api.deletePost(post)
-    .then(data => dispatch(deletePost(data)))
+    .then((data) => {
+      dispatch(deletePost(data));
+      window.location.href = '/';
+    })
 );

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPostById } from '../../actions/posts';
 import PostDetail from './detail';
+import Loading from '../loading';
 
 class PostContainer extends Component {
   state = {
@@ -21,13 +22,7 @@ class PostContainer extends Component {
 
   renderLoading() {
     return (
-      <div id="loading">
-        <div id="loading-center">
-          <div id="loading-center-absolute">
-            <div id="object" />
-          </div>
-        </div>
-      </div>
+      <Loading />
     );
   }
 
