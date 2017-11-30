@@ -22,7 +22,8 @@
     "tachyons": "^4.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "server": "cd api-server && node server",
+    "start": "npm run server | react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
