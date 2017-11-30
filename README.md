@@ -19,7 +19,7 @@ This repository contains a basic Node back-end server in `/api-server` as well a
 ### Running a production build
 - Run `npm run build`
 - Run `server -s build` to start a basic server for the front-end
-- Open your browser at the url in the console - usually http://localhost:5000
+- Open your browser at the url in the console - usually  http://localhost:5000
 - A production Node server is located at https://reddit-clone-server-nzukgqqhyc.now.sh
 
 
