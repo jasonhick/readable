@@ -48,10 +48,11 @@ class PostForm extends Component {
     };
 
     if (this.state.isEditing) {
-      this.props.updatePost(post);
+      this.props.apiUpdatePost(post);
       this.props.toggleEdit();
     } else {
-      this.props.addPost(post);
+      this.props.apiAddPost(post);
+      window.location.href = `/${post.category}/${post.id}`;
       this.clearForm();
     }
   }
@@ -178,10 +179,6 @@ PostForm.propTypes = {
 };
 
 const mapStateToProps = () => ({});
-
-const mapDispatchToProps = dispatch => ({
-  addPost: post => dispatch(apiAddPost(post)),
-  updatePost: post => dispatch(apiUpdatePost(post)),
-});
+const mapDispatchToProps = { apiAddPost, apiUpdatePost };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
