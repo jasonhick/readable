@@ -11,9 +11,4 @@ function CategoryView({ match }) {
   );
 }
 
-CategoryView.propTypes = {
-  match: PropTypes.string.isRequired,
-};
-
-
 export default CategoryView;

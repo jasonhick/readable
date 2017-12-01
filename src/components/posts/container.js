@@ -75,10 +75,4 @@ const mapDispatchToProps = dispatch => ({
   sortPosts: field => dispatch(sortPosts(field)),
 });
 
-PostsContainer.propTypes = {
-  posts: PropTypes.shape.isRequired,
-  getAllPosts: PropTypes.func.isRequired,
-  sortPosts: PropTypes.func.isRequired,
-};
-
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostsContainer));

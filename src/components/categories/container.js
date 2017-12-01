@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import * as ReadableAPI from '../../utils/api';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { getCategories } from '../../actions/categories';
 import CategoryList from './list';
 
 class CategoryContainer extends Component {
-    state = {
-      categories: [],
-    }
+  componentDidMount() {
+    this.props.getCategories();
+  }
 
-    componentDidMount() {
-      ReadableAPI.getCategories().then((categories) => {
-        this.setState({ categories });
-      });
-    }
-
-    render() {
-      return React.createElement(CategoryList, { categories: this.state.categories });
-    }
+  render() {
+    return React.createElement(CategoryList);
+  }
 }
 
-export default CategoryContainer;
+const mapDispatchToProps = { getCategories };
+
+export default withRouter(connect(null, mapDispatchToProps)(CategoryContainer));

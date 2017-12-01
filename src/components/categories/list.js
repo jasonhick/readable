@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { NavLink, withRouter } from 'react-router-dom';
 import FaHome from 'react-icons/lib/fa/home';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 const CategoryList = ({ categories }) => (
 
   <div className="bg-near-black">
-
     <nav className="mw8 h3 center pv0">
 
       <NavLink
@@ -28,7 +28,7 @@ const CategoryList = ({ categories }) => (
           to={`/${path}`}
         >{name}
         </NavLink>
-        ))}
+      ))}
 
       <NavLink
         activeClassName="bg-gold"
@@ -39,11 +39,13 @@ const CategoryList = ({ categories }) => (
         <span className="dn dib-ns">Add New Post</span>
       </NavLink>
 
-
     </nav>
-
   </div>
-
 );
 
-export default CategoryList;
+const mapStateToProps = state => ({
+  categories: Object.keys(state.categories)
+    .map(category => state.categories[category]),
+});
+
+export default withRouter(connect(mapStateToProps)(CategoryList));

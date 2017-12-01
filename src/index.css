@@ -7911,19 +7911,40 @@ img {
     }
 }
 
+@keyframes on {
+  from {
+    box-shadow: 0.25rem 0 0 #ffb700, -0.25rem 0 0 #000;
+  }
+  to {
+    box-shadow: 2rem 0 0 #ffb700, -0.5rem 0 0 #000;
+  }
+}
+
+@keyframes off {
+  from {
+    box-shadow: 2rem 0 0 #ffb700, -0.5rem 0 0 #000;
+  }
+  to {
+    box-shadow: 0.25rem 0 0 #000, -0.25rem 0 0 #000;
+  }
+}
+
 .hover-title {
   -webkit-box-decoration-break: clone;
   -ms-box-decoration-break: clone;
   -o-box-decoration-break: clone;
   box-decoration-break: clone;
   box-shadow: 0.25rem 0 0 #000, -0.25rem 0 0 #000;
-  transition: all .15s ease-in-out
+  animation-name: off;
+  animation-duration: .1s;
 }
 
 .hover-title:hover {
   background-color: #ffb700;
   box-shadow: 2rem 0 0 #ffb700, -0.5rem 0 0 #000;
-  transition: all .15s ease-in-out
+  animation-name: on;
+  animation-duration: .3s;
+
 }
 
 .title {
