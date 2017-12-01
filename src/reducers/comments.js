@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as actionType from '../actions/types';
 
 function comments(state = [], action) {
@@ -22,14 +23,7 @@ function comments(state = [], action) {
       };
 
     case actionType.DELETE_COMMENT: {
-      const newState = state;
-      if (newState.hasOwnProperty(action.comment.id)) {
-        delete newState[action.comment.id];
-      }
-      return {
-        ...state,
-        ...newState,
-      };
+      return _.omit(state, [action.comment.id]);
     }
 
     default:

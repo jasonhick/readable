@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as actionType from '../actions/types';
 
 function posts(state = [], action) {
@@ -29,6 +30,10 @@ function posts(state = [], action) {
         ...state,
         [action.post.id]: action.post,
       };
+
+    case actionType.DELETE_POST: {
+      return _.omit(state, [action.post.id]);
+    }
 
     default:
       return state;
