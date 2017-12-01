@@ -1,9 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import FaCommentO from 'react-icons/lib/fa/comment-o';
-import FaComments from 'react-icons/lib/fa/comments';
 import Voter from '../voter';
+import CommentCount from '../counter';
 
 const PostList = props => (
   <div className="flex-ns flex-wrap">
@@ -21,12 +20,7 @@ const PostList = props => (
         <span className="f5 black-50 i">Posted by {post.author}, {moment(post.timestamp).fromNow()}</span>
         <hr />
 
-        {post.commentCount > 0
-            ? <FaComments className="f2 black-70" />
-          : <FaCommentO className="f2 black-10" />
-          }
-
-        <span className="ml2 black-50">{post.commentCount}</span>
+        <CommentCount count={post.commentCount} />
 
         <Voter type="post" id={post.id} score={post.voteScore} />
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { apiDeletePost } from '../../actions/posts';
+import CommentCount from '../counter';
 import Voter from '../voter';
 import Menu from '../menu';
 import PostForm from './form';
@@ -50,6 +51,7 @@ class PostDetail extends Component {
         <p className="avenir f5 avenir lh-copy near-black measure">
           {post.body}
         </p>
+        <CommentCount count={post.commentCount} />
         <Voter type="post" id={post.id} score={post.voteScore} />
         <h2 className="cb mt6 pt3 bt b--black-10 f2 i athelas silver">Comments:</h2>
         <CommentsContainer />
