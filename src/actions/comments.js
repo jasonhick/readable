@@ -1,6 +1,7 @@
 import * as api from '../utils/api';
 import makeActionCreator from '../utils/makeActionCreator';
 import * as actionType from './types';
+import { incrementPostComment, decrementPostComment } from './posts';
 
 //----------------------------------------------
 // COMMENT ACTIONS
@@ -20,7 +21,10 @@ export const getCommentsByPost = id => dispatch => (
 
 export const apiAddComment = comment => dispatch => (
   api.addComment(comment)
-    .then(data => dispatch(addComment(data)))
+    .then((data) => {
+      dispatch(addComment(data));
+      dispatch(incrementPostComment(data.parentId));
+    })
 );
 
 export const apiUpdateComment = comment => dispatch => (
@@ -30,5 +34,8 @@ export const apiUpdateComment = comment => dispatch => (
 
 export const apiDeleteComment = id => dispatch => (
   api.deleteComment(id)
-    .then(data => dispatch(deleteComment(data)))
+    .then((data) => {
+      dispatch(deleteComment(data));
+      dispatch(decrementPostComment(data.parentId));
+    })
 );

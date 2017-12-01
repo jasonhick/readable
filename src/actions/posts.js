@@ -10,6 +10,8 @@ const getPost = makeActionCreator(actionType.GET_POST, 'post');
 const addPost = makeActionCreator(actionType.ADD_POST, 'post');
 const updatePost = makeActionCreator(actionType.UPDATE_POST, 'post');
 const deletePost = makeActionCreator(actionType.DELETE_POST, 'post');
+export const incrementPostComment = makeActionCreator(actionType.INCREMENT_POST_COMMENT, 'parentId');
+export const decrementPostComment = makeActionCreator(actionType.DECREMENT_POST_COMMENT, 'parentId');
 
 export function sortPosts(field) {
   return {

@@ -17,5 +17,4 @@ export const apiVote = (type, id, option) => dispatch => (
     : api.voteOnComment(id, option).then(data => dispatch(voteComment(data)))
 );
 
-
 export default apiVote;

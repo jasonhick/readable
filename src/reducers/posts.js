@@ -31,6 +31,23 @@ function posts(state = [], action) {
         [action.post.id]: action.post,
       };
 
+    case actionType.INCREMENT_POST_COMMENT:
+      return {
+        ...state,
+        [action.parentId]: {
+          ...state[action.parentId],
+          commentCount: state[action.parentId].commentCount + 1,
+        },
+      };
+
+    case actionType.DECREMENT_POST_COMMENT:
+      return {
+        ...state,
+        [action.parentId]: {
+          ...state[action.parentId],
+          commentCount: state[action.parentId].commentCount - 1,
+        },
+      };
     case actionType.DELETE_POST: {
       return _.omit(state, [action.post.id]);
     }
