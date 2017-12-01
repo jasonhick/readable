@@ -33,8 +33,5 @@ const mapStateToProps = state => ({
     .sort(sortBy('-voteScore')),
 });
 
-const mapDispatchToProps = dispatch => ({
-  getCommentsByPost: post => dispatch(getCommentsByPost(post)),
-});
-
+const mapDispatchToProps = { getCommentsByPost };
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentsContainer));

@@ -44,10 +44,10 @@ class CommentForm extends Component {
     };
 
     if (this.state.isEditing) {
-      this.props.updateComment(comment);
+      this.props.apiUpdateComment(comment);
       this.props.toggleEdit();
     } else {
-      this.props.addComment(comment);
+      this.props.apiAddComment(comment);
       this.clearForm();
     }
   }
@@ -90,11 +90,6 @@ class CommentForm extends Component {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapDispatchToProps = { apiAddComment, apiUpdateComment };
 
-const mapDispatchToProps = dispatch => ({
-  addComment: comment => dispatch(apiAddComment(comment)),
-  updateComment: comment => dispatch(apiUpdateComment(comment)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentForm));
+export default connect(null, mapDispatchToProps)(withRouter(CommentForm));

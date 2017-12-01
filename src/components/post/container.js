@@ -45,8 +45,6 @@ const mapStateToProps = state => ({
     .map(post => state.posts[post]),
 });
 
-const mapDispatchToProps = dispatch => ({
-  getPostById: id => dispatch(getPostById(id)),
-});
+const mapDispatchToProps = { getPostById };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostContainer));

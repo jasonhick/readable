@@ -19,7 +19,7 @@ class Comment extends Component {
 
   render() {
     const { isEditing } = this.state;
-    const { comment, deleteComment } = this.props;
+    const { comment, apiDeleteComment } = this.props;
 
     if (isEditing) {
       return (
@@ -37,7 +37,7 @@ class Comment extends Component {
         <Menu
           cssClass="absolute top-1 right-1 h1 w2 tr pointer hide-child"
           handleToggleEdit={this.toggleEdit}
-          handleOnDelete={() => deleteComment(comment.id)}
+          handleOnDelete={() => apiDeleteComment(comment.id)}
         />
         <p className="mt0 avenir">{comment.body}</p>
         <p className="athelas silver i">Posted by {comment.author}, {moment(comment.timestamp).fromNow()}</p>
@@ -50,10 +50,6 @@ class Comment extends Component {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapDispatchToProps = { apiDeleteComment };
 
-const mapDispatchToProps = dispatch => ({
-  deleteComment: id => dispatch(apiDeleteComment(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comment);
+export default connect(null, mapDispatchToProps)(Comment);

@@ -15,6 +15,10 @@ class CategoryContainer extends Component {
   }
 }
 
+CategoryContainer.propTypes = {
+  getCategories: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = { getCategories };
 
 export default withRouter(connect(null, mapDispatchToProps)(CategoryContainer));

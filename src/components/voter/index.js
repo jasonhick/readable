@@ -11,14 +11,14 @@ const Voter = props => (
     <button
       type="button"
       className="pa2 br3 f4 ba b--black-20 mr1 hover-bg-gold bg-animate pointer grow"
-      onClick={() => props.upVote(props.type, props.id)}
+      onClick={() => props.apiVote(props.type, props.id, 'upVote')}
     ><FaThumbsOUp />
     </button>
 
     <button
       type="button"
       className="pa2 br3 f4 ba b--black-20 mr1 hover-bg-gold bg-animate pointer grow"
-      onClick={() => props.downVote(props.type, props.id)}
+      onClick={() => props.apiVote(props.type, props.id, 'downVote')}
     ><FaThumbsODown />
     </button>
 
@@ -28,18 +28,12 @@ const Voter = props => (
 );
 
 Voter.propTypes = {
-  upVote: PropTypes.func.isRequired,
-  downVote: PropTypes.func.isRequired,
+  apiVote: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = () => ({});
+const mapDispatchToProps = { apiVote };
 
-const mapDispatchToProps = dispatch => ({
-  upVote: (type, id) => dispatch(apiVote(type, id, 'upVote')),
-  downVote: (type, id) => dispatch(apiVote(type, id, 'downVote')),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Voter);
+export default connect(null, mapDispatchToProps)(Voter);

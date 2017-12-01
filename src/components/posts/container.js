@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import sortBy from 'sort-by';
 import { getAllPosts, sortPosts } from '../../actions/posts';
 import PostList from './list';
@@ -70,9 +69,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getAllPosts: () => dispatch(getAllPosts()),
-  sortPosts: field => dispatch(sortPosts(field)),
-});
+const mapDispatchToProps = { getAllPosts, sortPosts };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostsContainer));

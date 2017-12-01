@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import FaHome from 'react-icons/lib/fa/home';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
@@ -42,6 +43,10 @@ const CategoryList = ({ categories }) => (
     </nav>
   </div>
 );
+
+CategoryList.propTypes = {
+  categories: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = state => ({
   categories: Object.keys(state.categories)

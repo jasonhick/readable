@@ -21,7 +21,7 @@ class PostDetail extends Component {
 
   render() {
     const { isEditing } = this.state;
-    const { post, deletePost } = this.props;
+    const { post, apiDeletePost } = this.props;
 
     if (isEditing) {
       return (
@@ -46,7 +46,7 @@ class PostDetail extends Component {
         <Menu
           cssClass="fr relative h1 w2 tr pointer hide-child"
           handleToggleEdit={this.toggleEdit}
-          handleOnDelete={() => deletePost(post.id)}
+          handleOnDelete={() => apiDeletePost(post.id)}
         />
         <p className="avenir f5 avenir lh-copy near-black measure">
           {post.body}
@@ -62,8 +62,6 @@ class PostDetail extends Component {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
-  deletePost: id => dispatch(apiDeletePost(id)),
-});
+const mapDispatchToProps = { apiDeletePost };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
